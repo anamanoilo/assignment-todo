@@ -1,24 +1,38 @@
-import { GET } from "./api/todo";
-import { Card, CardBody } from "@nextui-org/react";
+import { getTodos } from "./api/todo";
+import TodoList from "./ui/TodoList";
+import PaginationBox from "./ui/PaginationBox";
 
-export default async function Home() {
-  const todos = await GET();
-  console.log(todos);
+export type Todo = {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+};
+
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: {
+    limit?: string;
+    page?: string;
+  };
+}) {
+  const page = Number(searchParams?.page) || 1;
+  const limit = Number(searchParams?.limit) || 10;
+  const {
+    todos,
+    totalItems,
+  }: {
+    todos: Todo[];
+    totalItems: number;
+  } = await getTodos({ limit, page });
+  const totalPages = Math.ceil(totalItems / limit);
   return (
     <main className="container mx-auto px-4 py-6">
       <p>Home</p>
-      {/* <Pagination totalPages={totalPages} /> */}
-      <ul className="grid gap-4">
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <Card>
-              <CardBody>
-                <p>{todo.title}</p>
-              </CardBody>
-            </Card>
-          </li>
-        ))}
-      </ul>
+      <TodoList todos={todos} />
+
+      <PaginationBox totalPages={totalPages} page={page} />
     </main>
   );
 }
