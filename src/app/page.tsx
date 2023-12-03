@@ -1,13 +1,18 @@
-import { getTodos } from "./api/todo";
+import Link from "next/link";
+import Modal from "./ui/Modal";
+import { getTodos, addTodo } from "./api/todosAPI";
 import TodoList from "./ui/TodoList";
 import PaginationBox from "./ui/PaginationBox";
+import { Input, Button } from "@nextui-org/react";
 
 export type Todo = {
-  userId: number;
   id: number;
   title: string;
   completed: boolean;
 };
+// export type Props = {
+//   searchParams: Record<string, string>|null|undefined;
+// };
 
 export default async function Home({
   searchParams,
@@ -15,6 +20,7 @@ export default async function Home({
   searchParams?: {
     limit?: string;
     page?: string;
+    modal?: string;
   };
 }) {
   const page = Number(searchParams?.page) || 1;
@@ -27,12 +33,19 @@ export default async function Home({
     totalItems: number;
   } = await getTodos({ limit, page });
   const totalPages = Math.ceil(totalItems / limit);
-  return (
-    <main className="container mx-auto px-4 py-6">
-      <p>Home</p>
-      <TodoList todos={todos} />
+  console.log("totalPages:", totalPages);
+  console.log("page:", page);
 
-      <PaginationBox totalPages={totalPages} page={page} />
+  return (
+    <main className="container px-4">
+      <div className="flex flex-col gap-8">
+        <TodoList todos={todos} />
+        <PaginationBox totalPages={totalPages} page={page} />
+        <form action={addTodo} className="my-50 mx-10">
+          <Input name="title" />
+          <Button type="submit">Add Todo</Button>
+        </form>
+      </div>
     </main>
   );
 }
