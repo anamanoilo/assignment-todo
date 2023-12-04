@@ -21,7 +21,7 @@ export default function PaginationBox({
   };
 
   return (
-    <div className="my-8 mx-auto">
+    <div className=" h-56 flex justify-center ">
       <Pagination
         showControls
         total={totalPages}

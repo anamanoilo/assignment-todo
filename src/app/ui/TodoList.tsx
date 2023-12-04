@@ -6,7 +6,6 @@ import EditButton from "./EditButton";
 
 export default function TodoList({ todos }: { todos: Todo[] }) {
   return (
-    // <div className="container px-4">
     <ul className="flex flex-col gap-4">
       {todos.map((todo) => (
         <li key={todo.id}>
@@ -29,6 +28,5 @@ export default function TodoList({ todos }: { todos: Todo[] }) {
         </li>
       ))}
     </ul>
-    // </div>
   );
 }

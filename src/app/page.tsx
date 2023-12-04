@@ -41,6 +41,7 @@ export default async function Home({
       <div className="flex flex-col gap-8">
         <TodoList todos={todos} />
         <PaginationBox totalPages={totalPages} page={page} />
+
         <form action={addTodo} className="my-50 mx-10">
           <Input name="title" />
           <Button type="submit">Add Todo</Button>
