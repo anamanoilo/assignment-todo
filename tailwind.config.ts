@@ -11,6 +11,10 @@ const config = {
   theme: {
     container: {
       center: true,
+      padding: {
+        DEFAULT: "15px",
+        md: "30px",
+      },
     },
     extend: {
       backgroundImage: {

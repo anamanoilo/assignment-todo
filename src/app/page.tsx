@@ -37,14 +37,29 @@ export default async function Home({
   console.log("page:", page);
 
   return (
-    <main className="container px-4">
-      <div className="flex flex-col gap-8">
-        <TodoList todos={todos} />
+    <main className="container">
+      <div className=" md:h-screen flex flex-col gap-6 items-center py-10">
+        <h1 className="text-xl md:text-2xl lg:text-4xl ">Todo List:</h1>
         <PaginationBox totalPages={totalPages} page={page} />
+        <div className="grow">
+          <TodoList todos={todos} />
+        </div>
 
-        <form action={addTodo} className="my-50 mx-10">
-          <Input name="title" />
-          <Button type="submit">Add Todo</Button>
+        <form action={addTodo} className="flex flex-row gap-4 w-full">
+          <Input
+            className="grow"
+            name="title"
+            variant="faded"
+            label="Todo title"
+          />
+          <Button
+            type="submit"
+            color="primary"
+            className="ml-auto self-stretch"
+            size="lg"
+          >
+            Add Todo
+          </Button>
         </form>
       </div>
     </main>

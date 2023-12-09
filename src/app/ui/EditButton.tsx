@@ -1,4 +1,5 @@
 import { Link, Button } from "@nextui-org/react";
+import { PencilIcon } from "@heroicons/react/24/outline";
 
 export default function EditButton({ id }: { id: number }) {
   return (
@@ -7,8 +8,11 @@ export default function EditButton({ id }: { id: number }) {
       as={Link}
       color="primary"
       variant="bordered"
+      isIconOnly
+      aria-label="Edit"
+      className="p-2"
     >
-      Edit
+      <PencilIcon />
     </Button>
   );
 }

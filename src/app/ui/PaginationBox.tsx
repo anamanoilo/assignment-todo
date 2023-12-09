@@ -21,14 +21,13 @@ export default function PaginationBox({
   };
 
   return (
-    <div className=" h-56 flex justify-center ">
-      <Pagination
-        showControls
-        total={totalPages}
-        initialPage={page}
-        onChange={onChange}
-        page={page}
-      />
-    </div>
+    <Pagination
+      showControls
+      total={totalPages}
+      initialPage={page}
+      onChange={onChange}
+      page={page}
+      variant="faded"
+    />
   );
 }

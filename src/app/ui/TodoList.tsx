@@ -6,20 +6,20 @@ import EditButton from "./EditButton";
 
 export default function TodoList({ todos }: { todos: Todo[] }) {
   return (
-    <ul className="flex flex-col gap-4">
-      {todos.map((todo) => (
+    <ul className="h-full w-ful grid  grid-cols-1 lg:grid-cols-2 gap-4">
+      {todos?.map((todo) => (
         <li key={todo.id}>
-          <Card className="container">
-            <CardBody className="flex">
-              <div className="flex">
+          <Card isHoverable className="h-full">
+            <CardBody className="w-full flex flex-nowrap flex-row items-start gap-8 ">
+              <div className="w-full flex items-baseline ">
                 <Checkbox
                   defaultSelected={todo.completed}
                   color="success"
                   // onChange={() => {}}
                 />
-                <p>{todo.title}</p>
+                <p className="text-sm md:text-base xl:text-lg">{todo.title}</p>
               </div>
-              <div className="flex gap-4 items-center">
+              <div className="flex gap-4 items-center ml-auto">
                 <EditButton id={todo.id} />
                 <DeleteButton id={todo.id} />
               </div>
